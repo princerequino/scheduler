@@ -1,3 +1,8 @@
+const matchAppointments = (appointments, ids) => {
+  const matched = ids.map(id => appointments[id]);
+  return matched;
+}
+
 export function getAppointmentsForDay(state, day) {
   const appointmentsArray = [];
 
@@ -10,3 +15,4 @@ export function getAppointmentsForDay(state, day) {
   });
   return appointmentsArray;
 }
+
