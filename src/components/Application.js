@@ -48,13 +48,7 @@ const appointments = [
 ];
 
 
-const [days, setDays] = useState([]);
 
-useEffect(() => {
-  axios.get("/api/days").then((response) => {
-    return setDays(response.data);
-  });
-}, []);
 
 const appointment = appointments.map((appt) => {
   console.log(appt, "appt")
@@ -65,6 +59,15 @@ const appointment = appointments.map((appt) => {
 console.log(appointment)
 
 export default function Application(props) {
+
+  const [days, setDays] = useState([]);
+
+useEffect(() => {
+  axios.get("/api/days").then((response) => {
+    return setDays(response.data);
+  });
+}, []);
+
   const [day, setDay] = useState("Monday");
 
   return (
