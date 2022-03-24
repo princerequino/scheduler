@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "components/Application.scss";
 import DayList from 'components/DayList';
 
@@ -48,26 +48,13 @@ const appointments = [
 ];
 
 
+const [days, setDays] = useState([]);
 
-
-
-const days = [
-  {
-    id: 1,
-    name: "Monday",
-    spots: 2,
-  },
-  {
-    id: 2,
-    name: "Tuesday",
-    spots: 5,
-  },
-  {
-    id: 3,
-    name: "Wednesday",
-    spots: 0,
-  },
-];
+useEffect(() => {
+  axios.get("/api/days").then((response) => {
+    return setDays(response.data);
+  });
+}, []);
 
 const appointment = appointments.map((appt) => {
   console.log(appt, "appt")
