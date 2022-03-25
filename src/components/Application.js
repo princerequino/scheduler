@@ -3,8 +3,11 @@ import axios from "axios";
 import "components/Application.scss";
 import DayList from 'components/DayList';
 
+// eslint-disable-next-line
+import InterviewerList from "./InterviewerList";
+
 import Appointment from "components/Appointment";
-import { matchAppointments, getAppointmentsForDay, getInterview } from "helpers/selectors";
+import { matchIds, getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
 
 
@@ -33,11 +36,12 @@ export default function Application(props) {
   }, [])
 
   const appointmentObjects = getAppointmentsForDay(state, state.day);
+  const interviewers = getInterviewersForDay(state, state.day);
 
   const appointment = appointmentObjects.map((appointmentObject) => {
     const interview = getInterview(state, appointmentObject.interview)
     return (
-      <Appointment {...appointmentObject} key={appointmentObject.id} interview={interview}/>
+      <Appointment {...appointmentObject} key={appointmentObject.id} interview={interview} interviewers={interviewers}/>
       )
   });
 
