@@ -1,9 +1,9 @@
-export function matchIds(appointments, ids){
+ function matchIds(appointments, ids){
   const matched = ids.map(id => appointments[id]);
   return matched;
 }
 
-export function getAppointmentsForDay(state, day) {
+ function getAppointmentsForDay(state, day) {
   const appointmentsArray = [];
 
   state.days.map((dayItem) => {
@@ -16,7 +16,7 @@ export function getAppointmentsForDay(state, day) {
   return appointmentsArray;
 }
 
-export function getInterview(state, interview) {
+ function getInterview(state, interview) {
   if (!interview) {
     return null;
   }
@@ -30,7 +30,7 @@ export function getInterview(state, interview) {
 
 
 
-export function getInterviewersForDay(state, day) {
+ function getInterviewersForDay(state, day) {
 
   let interviewersArr = [];
   state.days.map(dayObject => {
@@ -40,3 +40,5 @@ export function getInterviewersForDay(state, day) {
   })
   return matchIds(state.interviewers, interviewersArr);
 };
+
+export { matchIds , getInterviewersForDay, getInterview, getAppointmentsForDay };
