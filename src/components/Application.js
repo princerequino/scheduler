@@ -50,7 +50,7 @@ export default function Application(props) {
         setState({...state, appointments})
         return res
       })
-    .catch(err => console.log(err))
+
   }
 
   async function cancelInterview(id) {
@@ -65,14 +65,13 @@ export default function Application(props) {
       [id]: appointment
     }
 
-    try {
-      const res = await axios.delete(`http://localhost:8001/api/appointments/${id}`);
-      setState({ ...state, appointments });
-      return res;
-    } catch (err) {
-      return console.log(err);
-    }
-  };
+    return axios.delete(`http://localhost:8001/api/appointments/${id}`)
+    .then(res => {
+      setState({...state, appointments})
+      return res
+    })
+
+  }
 
   const appointmentObjects = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersForDay(state, state.day);
