@@ -7,11 +7,7 @@ import DayList from 'components/DayList';
 import InterviewerList from "./InterviewerList";
 
 import Appointment from "components/Appointment";
-import { matchIds, getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
-
-
-
-
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
 
 export default function Application(props) {
@@ -57,6 +53,27 @@ export default function Application(props) {
     .catch(err => console.log(err))
   }
 
+  async function cancelInterview(id) {
+
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    }
+
+    try {
+      const res = await axios.delete(`http://localhost:8001/api/appointments/${id}`);
+      setState({ ...state, appointments });
+      return res;
+    } catch (err) {
+      return console.log(err);
+    }
+  };
+
   const appointmentObjects = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersForDay(state, state.day);
 
@@ -69,6 +86,7 @@ export default function Application(props) {
           interview={interview}
           interviewers={interviewers}
           bookInterview={bookInterview}
+          cancelInterview={cancelInterview}
         />
       )
   });
@@ -88,6 +106,7 @@ export default function Application(props) {
           day={state.day}
           setDay={setDay}
           bookInterview={bookInterview}
+          cancelInterview={cancelInterview}
         />
         </nav>
         <img
@@ -98,7 +117,14 @@ export default function Application(props) {
       </section>
       <section className="schedule">
       {appointment} 
-      <Appointment key="last" time="5pm" bookInterview={bookInterview} />
+      <Appointment 
+      key="last" 
+      time="5pm" 
+      bookInterview={bookInterview} 
+      cancelInterview={cancelInterview} 
+      />
+
+
       </section>
     </main>
   );
