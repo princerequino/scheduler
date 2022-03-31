@@ -1,3 +1,4 @@
+/* eslint-disable */
 describe("Appointment", () => {
   beforeEach(() => {
     cy.request("GET", "/api/debug/reset");

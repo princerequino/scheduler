@@ -1,3 +1,4 @@
+ /* eslint-disable */
  function matchIds(array, ids){
   const matched = ids.map(id => array[id]);
   return matched;
@@ -12,9 +13,6 @@
   // const appointments = dayItem.appointments.map((appointment) => state.appointments[appointment] )
   // return appointments
 
-
-
-  // debugger;
   state.days.map((dayItem) => {
     if (dayItem.name === day) {
       dayItem.appointments.filter((appointment) => {
