@@ -14,14 +14,14 @@ Interview Scheduler is a SPA (Single Page Application) for tracking students int
 - Days display currently remaining spots and capture updates after each modification
 
 ### Homepage
-![Homepage-View]()
+![Homepage-View](https://github.com/princerequino/scheduler/blob/master/docs/Homepage.JPG)
 *By selecting a weekday on the left panel, a user can see booked appointments and available slots for each day.*
 
 ### Book Appointment
-![Booking-Appointment] ()
+![Booking-Appointment](https://github.com/princerequino/scheduler/blob/master/docs/Booking-Appointment.JPG)
 *A user can add interviews to available slots by typing a student name and adding interviewer from the list (an error message will be shown if a student name field is left blank).*
 ### Cancel Appointment
-![Cancel-Interview]()
+![Cancel-Interview](https://github.com/princerequino/scheduler/blob/master/docs/Deleting-Appointment.JPG)
 *A user can cancel an existing appointment by pressing the delete icon and interacting with a warning message by pressing a confirm button.*
 
 **Note** : For full functionality both must run concurrently: the client and the API server applications (see database* setup below).
